@@ -2,6 +2,11 @@
 
 JobFit AI turns a job description into a clear role summary, compares it with a pasted resume, identifies meaningful skill gaps, and builds a practical learning and interview plan.
 
+Live site: [https://jobfit-ai.jobfit-ai.workers.dev](https://jobfit-ai.jobfit-ai.workers.dev)
+
+- English: `/`
+- 简体中文: `/zh`
+
 ## Project Overview
 
 The MVP helps a job seeker move through one simple flow:
@@ -39,6 +44,7 @@ The app does not claim to reproduce an employer's ATS. Any percentage shown is c
 - Tailwind CSS 4
 - OpenAI Responses API with Structured Outputs
 - Zod for request and AI response validation
+- Cloudflare Workers with vinext
 
 ## Installation
 
@@ -85,9 +91,31 @@ Quality checks:
 ```bash
 npm run lint
 npm run build
+npm run build:vinext
 ```
 
 If no API key is configured, select **Try Demo** to explore the complete product flow with sample data.
+
+## Cloudflare Deployment
+
+The production app runs on Cloudflare Workers. Test the Workers build locally with:
+
+```bash
+npm run build:vinext
+npm run start:vinext
+```
+
+Deploy a new production version with:
+
+```bash
+npm run deploy:vinext
+```
+
+Set the production OpenAI key as an encrypted Cloudflare secret. Do not put the key in source control:
+
+```bash
+npx wrangler secret put OPENAI_API_KEY
+```
 
 ## Project Structure
 
@@ -97,13 +125,18 @@ app/
   api/analyze-match/route.ts  Resume comparison endpoint
   analyze/page.tsx            Analysis dashboard route
   page.tsx                    Homepage route
+  zh/                         Simplified Chinese routes
 components/                   Reusable interface components
 lib/
   ai.ts                       Central OpenAI service
   api-errors.ts               Friendly API error mapping
   demo-data.ts                Built-in demo content
+  demo-data-zh.ts             Simplified Chinese demo content
+  i18n.ts                     English and Chinese UI copy
   schemas.ts                  Zod validation schemas
 types/analysis.ts             Shared TypeScript types
+vite.config.ts                vinext and Cloudflare build setup
+wrangler.jsonc                Cloudflare Workers configuration
 ```
 
 ## How It Works
