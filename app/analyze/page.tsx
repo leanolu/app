@@ -1,5 +1,5 @@
 import { AnalysisDashboard } from "@/components/analysis-dashboard";
 
 export default function AnalyzePage() {
-  return <AnalysisDashboard />;
+  return <AnalysisDashboard locale="en" />;
 }

@@ -45,10 +45,12 @@ export const resumeMatchSchema = z.object({
 
 export const analyzeJobRequestSchema = z.object({
   jobDescription: z.string().trim().min(50).max(20000),
+  locale: z.enum(["en", "zh"]).default("en"),
 });
 
 export const analyzeMatchRequestSchema = z.object({
   jobDescription: z.string().trim().min(50).max(20000),
   resume: z.string().trim().min(50).max(20000),
   jobAnalysis: jobAnalysisSchema,
+  locale: z.enum(["en", "zh"]).default("en"),
 });

@@ -3,11 +3,13 @@ import { analyzeResumeMatch } from "@/lib/ai";
 import { analyzeMatchRequestSchema } from "@/lib/schemas";
 
 export async function POST(request: Request) {
+  let locale: "en" | "zh" = "en";
   try {
     const body = await request.json();
-    const { jobDescription, jobAnalysis, resume } = analyzeMatchRequestSchema.parse(body);
-    return Response.json({ data: await analyzeResumeMatch(jobDescription, jobAnalysis, resume) });
+    locale = body?.locale === "zh" ? "zh" : "en";
+    const parsed = analyzeMatchRequestSchema.parse(body);
+    return Response.json({ data: await analyzeResumeMatch(parsed.jobDescription, parsed.jobAnalysis, parsed.resume, parsed.locale) });
   } catch (error) {
-    return errorResponse(error);
+    return errorResponse(error, locale);
   }
 }

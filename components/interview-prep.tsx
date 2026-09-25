@@ -1,13 +1,15 @@
 import type { ResumeMatch } from "@/types/analysis";
 import { SectionCard } from "@/components/section-card";
+import { getCopy, type Locale } from "@/lib/i18n";
 
-export function InterviewPrep({ questions }: { questions: ResumeMatch["interviewQuestions"] }) {
+export function InterviewPrep({ questions, locale }: { questions: ResumeMatch["interviewQuestions"]; locale: Locale }) {
+  const text = getCopy(locale);
   return (
-    <SectionCard id="interview" title="Interview Preparation" description="Practice concise answers grounded in your real experience">
+    <SectionCard id="interview" title={text.interviewTitle} description={text.interviewDescription}>
       <div className="grid gap-5 lg:grid-cols-3">
-        <QuestionGroup number="01" title="Common questions" items={questions.common} />
-        <QuestionGroup number="02" title="Role-specific" items={questions.roleSpecific} />
-        <QuestionGroup number="03" title="STAR stories" items={questions.star} />
+        <QuestionGroup number="01" title={text.interviewGroups[0]} items={questions.common} />
+        <QuestionGroup number="02" title={text.interviewGroups[1]} items={questions.roleSpecific} />
+        <QuestionGroup number="03" title={text.interviewGroups[2]} items={questions.star} />
       </div>
     </SectionCard>
   );

@@ -26,6 +26,8 @@ The app does not claim to reproduce an employer's ATS. Any percentage shown is c
 - Step-by-step action plan
 - Five common, five role-specific, and five STAR-style interview questions
 - Built-in Supply Chain Analyst demo that works without an API key
+- Complete English and Simplified Chinese interfaces with language switching
+- Localized AI output and localized demo data
 - Friendly validation and service error messages
 - Responsive desktop, tablet, and mobile layout
 
@@ -74,6 +76,9 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+- English: [http://localhost:3000](http://localhost:3000)
+- 简体中文: [http://localhost:3000/zh](http://localhost:3000/zh)
 
 Quality checks:
 

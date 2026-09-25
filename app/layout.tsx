@@ -4,6 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "JobFit AI — Understand the job. Build your path.",
   description: "Analyze job descriptions, compare your resume, and build a focused career action plan.",
+  alternates: { languages: { en: "/", "zh-CN": "/zh" } },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
